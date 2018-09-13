@@ -3,25 +3,20 @@ package Telegram.schedule;
 import Telegram.utils.Tuple;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 public class MapPerDay {
     private static Map<String, String> daysWithText = new TreeMap<>();
     private static Map<String, File> daysWithFile = new TreeMap<>();
-    public static Tuple<String,File> errorFile = new Tuple("Введіть день тижня в пофіг-якому відмінку або скорочено(ще можна \"сьогодні\", \"завтра\")\nДля особливих скорочення: пн, вт, ср, чт, пт", new File("src/resources/404.png"));
+    public static Tuple<String, File> errorFile;
 
-
-    public static TreeMap<String, String> translatedMap = new TreeMap() {
-        {
-            put("Monday", "понеділок");
-            put("Tuesday", "вівторок");
-            put("Wednesday", "середа");
-            put("Thursday", "четвер");
-            put("Friday", "п'ятниця");
-        }
-    };
-
+    static {
+        errorFile = new Tuple<>("Введіть день тижня в пофіг-якому відмінку або скорочено" +
+                "(ще можна \"сьогодні\", \"завтра\")\nДля особливих скорочення: пн, вт, ср, чт, пт",
+                new File("src/resources/404.png"));
+    }
 
     public MapPerDay() {
         setDaysWithSchedule();
@@ -50,11 +45,11 @@ public class MapPerDay {
     }
 
     private Map<String, File> setDayWithFile() {
-        daysWithFile.put("понеділок", new File("src/resources/monday.png"));
-        daysWithFile.put("вівторок", new File("src/resources/tuesday.png"));
-        daysWithFile.put("середа", new File("src/resources/wednesday.png"));
-        daysWithFile.put("четвер", new File("src/resources/thursday.png"));
-        daysWithFile.put("п'ятниця", new File("src/resources/friday.png"));
+        daysWithFile.put( Days.MONDAY.name(), new File("src/resources/monday.png"));
+        daysWithFile.put( Days.TUESDAY.name(), new File("src/resources/tuesday.png"));
+        daysWithFile.put( Days.WEDNESDAY.name(), new File("src/resources/wednesday.png"));
+        daysWithFile.put( Days.THURSDAY.name(), new File("src/resources/thursday.png"));
+        daysWithFile.put( Days.FRIDAY.name(), new File("src/resources/friday.png"));
         return daysWithFile;
     }
 

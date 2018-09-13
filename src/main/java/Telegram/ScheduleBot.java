@@ -22,7 +22,7 @@ public class ScheduleBot extends TelegramLongPollingBot {
             chatId = update.getMessage().getChatId();
 
             try {
-                if(!messageText.startsWith("/")) {
+                if (!messageText.startsWith("/")) {
                     message = TextRecognition.categorizedText(messageText, chatId, groupName);
                     if (message != null) {
                         execute(message);
