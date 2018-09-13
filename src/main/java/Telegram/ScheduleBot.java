@@ -8,6 +8,12 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 public class ScheduleBot extends TelegramLongPollingBot {
     private String messageText;
     private long chatId;
@@ -44,7 +50,19 @@ public class ScheduleBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        // Return bot token from BotFather
-        return "";
+        Properties prop = new Properties();
+        InputStream input = null;
+
+        try {
+            input = new FileInputStream("src/resources/config.properties");
+
+            prop.load(input);
+            return prop.getProperty("bot_token");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return "incorrect_token";
     }
 }
