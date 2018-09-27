@@ -29,9 +29,9 @@ public class TextRecognition {
         String todayOfWeek = dateFormatter.format(today).toUpperCase();
         String tomorrowOfWeek = dateFormatter.format(tomorrow).toUpperCase();
 
-        if (messageText.contains("сьогодні") || messageText.contains("сьодні")) {
+        if (messageText.contains("сьогодні") || messageText.contains("сьодні") || messageText.contains("сд")) {
             return todayOfWeek;
-        } else if (messageText.contains("завтра")) {
+        } else if (messageText.contains("завтра") || messageText.contains("зв")) {
             return tomorrowOfWeek;
         }
 
