@@ -51,11 +51,8 @@ public class ScheduleBot extends TelegramLongPollingBot {
     @Override
     public String getBotToken() {
         Properties prop = new Properties();
-        InputStream input = null;
 
-        try {
-            input = new FileInputStream("src/resources/config.properties");
-
+        try (InputStream input = new FileInputStream("src/resources/config.properties")) {
             prop.load(input);
             return prop.getProperty("bot_token");
         } catch (FileNotFoundException e) {
